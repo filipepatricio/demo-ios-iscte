@@ -134,6 +134,8 @@ static NSString *SEARCH_BOOKS_QUERY_URL = @"http://openlibrary.org/search.json?q
     bookCell.bookAuthorLabel.text = bookAuthor;
     
     // Set bookcell's cover image
+    // Reset the previous image before, because remember that the cell is reusable!!
+    bookCell.bookImageView.image = [UIImage imageNamed:@"book"];
     NSString *coverUrlString = [NSString stringWithFormat:@"http://covers.openlibrary.org/b/id/%ld-L.jpg", book.coverID];
     [bookCell.bookImageView setImageWithURL:[NSURL URLWithString:coverUrlString]];
     

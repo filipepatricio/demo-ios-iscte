@@ -13,5 +13,7 @@
 @property (strong, nonatomic) NSString* title;
 @property (strong, nonatomic) NSArray* authors; //Of NSString
 @property (assign, nonatomic) NSInteger coverID;
+@property (assign, nonatomic) NSInteger year;
+@property (assign, nonatomic) NSInteger edition;
 
 @end

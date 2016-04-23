@@ -15,6 +15,8 @@
              @"title": @"title",
              @"authors": @"author_name",
              @"coverID": @"cover_i",
+             @"year": @"first_publish_year",
+             @"edition": @"edition_count",
              };
 }
 

@@ -12,7 +12,10 @@
 @interface BookDetailViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yearLabel;
+@property (weak, nonatomic) IBOutlet UILabel *editionLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *bookImageView;
+@property (weak, nonatomic) IBOutlet UINavigationItem *navigationItem;
 @end
 
 @implementation BookDetailViewController
@@ -20,8 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.titleLabel.text = self.book.title;
-    self.authorLabel.text = self.book.authors.firstObject;
+    self.navigationItem.title = self.book.title;
+    self.titleLabel.text = [NSString stringWithFormat:@"Title: %@",self.book.title];
+    self.authorLabel.text = [NSString stringWithFormat:@"Author: %@",self.book.authors.firstObject];
+    self.yearLabel.text = [NSString stringWithFormat:@"Year: %ld", self.book.year];
+    self.editionLabel.text = [NSString stringWithFormat:@"Edition: %ld",self.book.edition];
     if(self.book.coverID)
     {
         self.bookImageView.image = nil;
