@@ -1,0 +1,2 @@
+pod 'Mantle'
+pod 'AFNetworking', '~> 3.0'
