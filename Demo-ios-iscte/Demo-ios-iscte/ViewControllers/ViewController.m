@@ -8,14 +8,23 @@
 
 #import "ViewController.h"
 
+// Models
+#import "Book.h"
+#import "SearchResult.h"
+
+// Pods
+#import "AFNetworking.h"
+
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *bookTextField;
 @property (weak, nonatomic) IBOutlet UILabel *bookNameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *booksTableView;
-@property (strong, nonatomic) NSMutableArray *books;
+@property (strong, nonatomic) NSMutableArray *books; //Of Type "Book"
 @end
 
 @implementation ViewController
+
+static NSString *SEARCH_BOOKS_QUERY_URL = @"http://openlibrary.org/search.json?q=%@";
 
 // Lazy instanciation of books
 -(NSMutableArray *)books
@@ -37,13 +46,54 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)actionButtonTap:(id)sender {
-    self.bookNameLabel.text = self.bookTextField.text;
+    
+    NSString *bookName = self.bookTextField.text;
+    self.bookNameLabel.text = bookName;
     
     // Add book title to NSMutableArray *books
-    [self.books addObject:self.bookTextField.text];
+    //    [self.books addObject:self.bookTextField.text];
     
     // Reload tableView data after adding a book to array
-    [self.booksTableView reloadData];
+    //    [self.booksTableView reloadData];
+    
+    //Search book on the API: http://openlibrary.org/
+    [self searchBookWithName:bookName];
+}
+
+- (void)searchBookWithName:(NSString*)bookName
+{
+    if(bookName.length > 0)
+    {
+        //API REQUEST
+        NSString *urlString = [NSString stringWithFormat:SEARCH_BOOKS_QUERY_URL, [bookName stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet]];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer.acceptableContentTypes = nil;
+        [manager GET:urlString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+            NSLog(@"JSON: %@", responseObject);
+            NSError *err;
+            SearchResult *searchResult = [MTLJSONAdapter modelOfClass:SearchResult.class
+                                                   fromJSONDictionary:responseObject
+                                                                error:&err];
+            
+            //Now the array *books receive objects from type "Book" instead of "NSString"
+            
+            self.books = [[NSMutableArray alloc] initWithArray:searchResult.books];
+            
+            //Reload table data and stop loading
+            [self.booksTableView reloadData];
+            
+        } failure:^(NSURLSessionTask *operation, NSError *error) {
+            NSLog(@"Error: %@", error);
+        }];
+        
+        // Hides keyboard
+        [self.view endEditing:YES];
+        
+    }
+    else
+    {
+        self.bookTextField.placeholder = @"Insert a book to search...";
+    }
 }
 
 #pragma mark UITableViewDataSource
@@ -62,7 +112,11 @@
     NSInteger index = indexPath.row;
     
     // Get book title from NSMutableArray *books
-    NSString *bookTitle = self.books[index];
+    // NSString *bookTitle = self.books[index];
+    
+    // Now its an object "Book" inside the array so:
+    Book *book = self.books[index];
+    NSString *bookTitle = book.title;
     
     // Set cell's text
     bookCell.textLabel.text = bookTitle;
