@@ -8,12 +8,15 @@
 
 #import "ViewController.h"
 
+#import "BookTableViewCell.h"
+
 // Models
 #import "Book.h"
 #import "SearchResult.h"
 
 // Pods
 #import "AFNetworking.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *bookTextField;
@@ -109,7 +112,7 @@ static NSString *SEARCH_BOOKS_QUERY_URL = @"http://openlibrary.org/search.json?q
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
     // Dequeue cell from reusable identifier
-    UITableViewCell *bookCell = [tableView dequeueReusableCellWithIdentifier:@"book-cell" forIndexPath:indexPath];
+    BookTableViewCell *bookCell = [tableView dequeueReusableCellWithIdentifier:@"book-cell" forIndexPath:indexPath];
     
     // Get table current index
     NSInteger index = indexPath.row;
@@ -119,10 +122,18 @@ static NSString *SEARCH_BOOKS_QUERY_URL = @"http://openlibrary.org/search.json?q
     
     // Now its an object "Book" inside the array so:
     Book *book = self.books[index];
-    NSString *bookTitle = book.title;
     
-    // Set cell's text
-    bookCell.textLabel.text = bookTitle;
+    // Set bookcell's title
+    NSString *bookTitle = book.title;
+    bookCell.bookTitleLabel.text = bookTitle;
+    
+    // Set bookcell's author
+    NSString *bookAuthor = book.authors.firstObject;
+    bookCell.bookAuthorLabel.text = bookAuthor;
+    
+    // Set bookcell's cover image
+    NSString *coverUrlString = [NSString stringWithFormat:@"http://covers.openlibrary.org/b/id/%ld-L.jpg", book.coverID];
+    [bookCell.bookImageView setImageWithURL:[NSURL URLWithString:coverUrlString]];
     
     return bookCell;
 }
