@@ -58,6 +58,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="7eN-TS-Y7g">
+                                <rect key="frame" x="142" y="265" width="37" height="37"/>
+                                <color key="color" red="0.23137254900000001" green="0.66666666669999997" blue="0.090196078430000007" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="J6k-eP-wal">
                                 <rect key="frame" x="-4" y="176" width="328" height="392"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,10 +93,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="J6k-eP-wal" secondAttribute="trailing" constant="-20" id="2Tr-Nh-wgJ"/>
+                            <constraint firstItem="7eN-TS-Y7g" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="5nc-te-zDN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="81u-VZ-x8W" secondAttribute="trailing" id="9nt-4x-C46"/>
                             <constraint firstItem="J6k-eP-wal" firstAttribute="top" secondItem="1sw-Vq-JGp" secondAttribute="bottom" constant="8" id="D3p-Xf-jTC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4Af-l6-5GO" secondAttribute="trailing" id="Gz6-B2-K6n"/>
                             <constraint firstAttribute="leadingMargin" secondItem="4Af-l6-5GO" secondAttribute="leading" id="ICq-Ie-sfQ"/>
+                            <constraint firstItem="7eN-TS-Y7g" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Now-gl-GER"/>
                             <constraint firstAttribute="leadingMargin" secondItem="81u-VZ-x8W" secondAttribute="leading" id="Ro5-f0-S4Y"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aaz-1f-oQj" secondAttribute="trailing" id="Vr9-lP-QiR"/>
                             <constraint firstItem="1sw-Vq-JGp" firstAttribute="top" secondItem="81u-VZ-x8W" secondAttribute="bottom" constant="8" id="cED-9q-fax"/>
@@ -108,6 +114,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="7eN-TS-Y7g" id="VTz-1K-Ji0"/>
                         <outlet property="bookNameLabel" destination="1sw-Vq-JGp" id="BZd-Rc-51U"/>
                         <outlet property="bookTextField" destination="aaz-1f-oQj" id="Npm-nH-oVT"/>
                         <outlet property="booksTableView" destination="J6k-eP-wal" id="LQU-5T-cm0"/>

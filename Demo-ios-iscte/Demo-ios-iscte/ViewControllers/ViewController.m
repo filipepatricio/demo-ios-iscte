@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bookNameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *booksTableView;
 @property (strong, nonatomic) NSMutableArray *books; //Of Type "Book"
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation ViewController
@@ -64,6 +65,8 @@ static NSString *SEARCH_BOOKS_QUERY_URL = @"http://openlibrary.org/search.json?q
 {
     if(bookName.length > 0)
     {
+        [self.activityIndicator startAnimating];
+        
         //API REQUEST
         NSString *urlString = [NSString stringWithFormat:SEARCH_BOOKS_QUERY_URL, [bookName stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLQueryAllowedCharacterSet]];
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -76,11 +79,11 @@ static NSString *SEARCH_BOOKS_QUERY_URL = @"http://openlibrary.org/search.json?q
                                                                 error:&err];
             
             //Now the array *books receive objects from type "Book" instead of "NSString"
-            
             self.books = [[NSMutableArray alloc] initWithArray:searchResult.books];
             
             //Reload table data and stop loading
             [self.booksTableView reloadData];
+            [self.activityIndicator stopAnimating];
             
         } failure:^(NSURLSessionTask *operation, NSError *error) {
             NSLog(@"Error: %@", error);
