@@ -58,10 +58,39 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="J6k-eP-wal">
+                                <rect key="frame" x="-4" y="176" width="328" height="392"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="zia-HE-j14" style="IBUITableViewCellStyleDefault" id="HlM-RQ-xbW">
+                                        <rect key="frame" x="0.0" y="28" width="328" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HlM-RQ-xbW" id="TgW-gP-oFR">
+                                            <rect key="frame" x="0.0" y="0.0" width="328" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zia-HE-j14">
+                                                    <rect key="frame" x="15" y="0.0" width="298" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="9qP-4j-fxx"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="gDt-rQ-IeG"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="J6k-eP-wal" secondAttribute="trailing" constant="-20" id="2Tr-Nh-wgJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="81u-VZ-x8W" secondAttribute="trailing" id="9nt-4x-C46"/>
+                            <constraint firstItem="J6k-eP-wal" firstAttribute="top" secondItem="1sw-Vq-JGp" secondAttribute="bottom" constant="8" id="D3p-Xf-jTC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4Af-l6-5GO" secondAttribute="trailing" id="Gz6-B2-K6n"/>
                             <constraint firstAttribute="leadingMargin" secondItem="4Af-l6-5GO" secondAttribute="leading" id="ICq-Ie-sfQ"/>
                             <constraint firstAttribute="leadingMargin" secondItem="81u-VZ-x8W" secondAttribute="leading" id="Ro5-f0-S4Y"/>
@@ -71,6 +100,8 @@
                             <constraint firstAttribute="leadingMargin" secondItem="aaz-1f-oQj" secondAttribute="leading" id="jfO-fl-dbI"/>
                             <constraint firstAttribute="leadingMargin" secondItem="1sw-Vq-JGp" secondAttribute="leading" id="oFl-iD-RqV"/>
                             <constraint firstItem="4Af-l6-5GO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="uI6-uv-Ar5"/>
+                            <constraint firstItem="J6k-eP-wal" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="xMT-vA-2yJ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="J6k-eP-wal" secondAttribute="bottom" id="xh5-bl-PBe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="1sw-Vq-JGp" secondAttribute="trailing" constant="-4" id="yQt-up-Jpf"/>
                             <constraint firstItem="aaz-1f-oQj" firstAttribute="top" secondItem="4Af-l6-5GO" secondAttribute="bottom" constant="8" id="zj7-KO-lRG"/>
                         </constraints>
@@ -79,6 +110,7 @@
                     <connections>
                         <outlet property="bookNameLabel" destination="1sw-Vq-JGp" id="BZd-Rc-51U"/>
                         <outlet property="bookTextField" destination="aaz-1f-oQj" id="Npm-nH-oVT"/>
+                        <outlet property="booksTableView" destination="J6k-eP-wal" id="LQU-5T-cm0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

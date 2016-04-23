@@ -8,9 +8,10 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *bookTextField;
 @property (weak, nonatomic) IBOutlet UILabel *bookNameLabel;
+@property (weak, nonatomic) IBOutlet UITableView *booksTableView;
 @end
 
 @implementation ViewController
@@ -26,6 +27,21 @@
 }
 - (IBAction)actionButtonTap:(id)sender {
     self.bookNameLabel.text = self.bookTextField.text;
+    
+    // Add book title to 'booksTableView'
+    
+}
+
+#pragma mark UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
+{
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    return nil;
 }
 
 @end
