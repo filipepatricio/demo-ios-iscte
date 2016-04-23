@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 #import "BookTableViewCell.h"
+#import "BookDetailViewController.h"
 
 // Models
 #import "Book.h"
@@ -24,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *booksTableView;
 @property (strong, nonatomic) NSMutableArray *books; //Of Type "Book"
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) Book *selectedBook;
 @end
 
 @implementation ViewController
@@ -136,6 +138,35 @@ static NSString *SEARCH_BOOKS_QUERY_URL = @"http://openlibrary.org/search.json?q
     [bookCell.bookImageView setImageWithURL:[NSURL URLWithString:coverUrlString]];
     
     return bookCell;
+}
+
+#pragma mark UITableViewDelegate
+
+- (NSIndexPath*)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //Save selected book and perform Segue
+    self.selectedBook = self.books[indexPath.row];
+    [self performSegueWithIdentifier:@"BookDetailSegue" sender:self];
+    return indexPath;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
+{
+    //Hide keyboard and deselect cell
+    [self.view endEditing:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma UINavigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    BookDetailViewController *vc = segue.destinationViewController;
+    if([segue.identifier isEqualToString:@"BookDetailSegue"])
+    {
+        //Pass book on segue
+        vc.book = self.selectedBook;
+    }
 }
 
 @end
