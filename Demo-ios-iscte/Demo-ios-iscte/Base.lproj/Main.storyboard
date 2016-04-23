@@ -62,7 +62,7 @@
                                 <rect key="frame" x="-4" y="176" width="328" height="392"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="zia-HE-j14" style="IBUITableViewCellStyleDefault" id="HlM-RQ-xbW">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="book-cell" textLabel="zia-HE-j14" style="IBUITableViewCellStyleDefault" id="HlM-RQ-xbW">
                                         <rect key="frame" x="0.0" y="28" width="328" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HlM-RQ-xbW" id="TgW-gP-oFR">

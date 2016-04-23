@@ -12,9 +12,20 @@
 @property (weak, nonatomic) IBOutlet UITextField *bookTextField;
 @property (weak, nonatomic) IBOutlet UILabel *bookNameLabel;
 @property (weak, nonatomic) IBOutlet UITableView *booksTableView;
+@property (strong, nonatomic) NSMutableArray *books;
 @end
 
 @implementation ViewController
+
+// Lazy instanciation of books
+-(NSMutableArray *)books
+{
+    if(!_books)
+    {
+        _books = [[NSMutableArray alloc] init];
+    }
+    return _books;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,20 +39,35 @@
 - (IBAction)actionButtonTap:(id)sender {
     self.bookNameLabel.text = self.bookTextField.text;
     
-    // Add book title to 'booksTableView'
+    // Add book title to NSMutableArray *books
+    [self.books addObject:self.bookTextField.text];
     
+    // Reload tableView data after adding a book to array
+    [self.booksTableView reloadData];
 }
 
 #pragma mark UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 {
-    return 0;
+    return self.books.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
-    return nil;
+    // Dequeue cell from reusable identifier
+    UITableViewCell *bookCell = [tableView dequeueReusableCellWithIdentifier:@"book-cell" forIndexPath:indexPath];
+    
+    // Get table current index
+    NSInteger index = indexPath.row;
+    
+    // Get book title from NSMutableArray *books
+    NSString *bookTitle = self.books[index];
+    
+    // Set cell's text
+    bookCell.textLabel.text = bookTitle;
+    
+    return bookCell;
 }
 
 @end
