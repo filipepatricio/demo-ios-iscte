@@ -9,7 +9,8 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
+@property (weak, nonatomic) IBOutlet UITextField *bookTextField;
+@property (weak, nonatomic) IBOutlet UILabel *bookNameLabel;
 @end
 
 @implementation ViewController
@@ -22,6 +23,9 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)actionButtonTap:(id)sender {
+    self.bookNameLabel.text = self.bookTextField.text;
 }
 
 @end

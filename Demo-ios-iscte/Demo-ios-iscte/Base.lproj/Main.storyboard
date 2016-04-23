@@ -18,12 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello world" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Af-l6-5GO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello world" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Af-l6-5GO">
                                 <rect key="frame" x="16" y="30" width="288" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Vb4-FO-x5c"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -37,8 +37,11 @@
                                 <state key="normal" title="Click">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="actionButtonTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cFI-p5-DUM"/>
+                                </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a book title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aaz-1f-oQj">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a book title" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="aaz-1f-oQj">
                                 <rect key="frame" x="16" y="59" width="288" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="klt-Jn-rpS"/>
@@ -46,6 +49,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sw-Vq-JGp">
+                                <rect key="frame" x="16" y="147" width="292" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="l8Y-jk-NnM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -54,13 +66,20 @@
                             <constraint firstAttribute="leadingMargin" secondItem="4Af-l6-5GO" secondAttribute="leading" id="ICq-Ie-sfQ"/>
                             <constraint firstAttribute="leadingMargin" secondItem="81u-VZ-x8W" secondAttribute="leading" id="Ro5-f0-S4Y"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aaz-1f-oQj" secondAttribute="trailing" id="Vr9-lP-QiR"/>
+                            <constraint firstItem="1sw-Vq-JGp" firstAttribute="top" secondItem="81u-VZ-x8W" secondAttribute="bottom" constant="8" id="cED-9q-fax"/>
                             <constraint firstItem="81u-VZ-x8W" firstAttribute="top" secondItem="aaz-1f-oQj" secondAttribute="bottom" constant="8" id="fWr-lT-ieD"/>
                             <constraint firstAttribute="leadingMargin" secondItem="aaz-1f-oQj" secondAttribute="leading" id="jfO-fl-dbI"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="1sw-Vq-JGp" secondAttribute="leading" id="oFl-iD-RqV"/>
                             <constraint firstItem="4Af-l6-5GO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="uI6-uv-Ar5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1sw-Vq-JGp" secondAttribute="trailing" constant="-4" id="yQt-up-Jpf"/>
                             <constraint firstItem="aaz-1f-oQj" firstAttribute="top" secondItem="4Af-l6-5GO" secondAttribute="bottom" constant="8" id="zj7-KO-lRG"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="bookNameLabel" destination="1sw-Vq-JGp" id="BZd-Rc-51U"/>
+                        <outlet property="bookTextField" destination="aaz-1f-oQj" id="Npm-nH-oVT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
